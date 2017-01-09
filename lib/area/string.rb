@@ -69,6 +69,18 @@ class String
     end
   end
 
+  # Public: Convert a state abbreviation to a random zip code
+  #
+  # Examples
+  #
+  #   "ny".to_random_zip
+  #   #=> "11101"
+  #
+  # Returns a string with a random zip, or empty string if not found.
+  def to_random_zip
+    @zip_codes = Area.zip_codes.find_all { |row| row[2] && row[2].downcase == self.downcase }.map{|a| a.first }.sample || ''
+  end
+
 
   # Public: Convert a zipcode to its GMT offset.
   #
